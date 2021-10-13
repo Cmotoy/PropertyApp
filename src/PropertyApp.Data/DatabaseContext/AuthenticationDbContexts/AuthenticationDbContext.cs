@@ -6,7 +6,7 @@ namespace PropertyApp.Data.DatabaseContext.AuthenticationDbContexts
 {
     public class AuthenticationDbContext : IdentityDbContext<ApplicationUser>
     {
-        public AuthenticationDbContext(DbContextOptions<AuthenticationDbContext> options ) : base (options)
+        public AuthenticationDbContext(DbContextOptions<AuthenticationDbContext> options ) : base(options)
         {    
         }
     }

@@ -28,6 +28,7 @@ namespace PropertyApp.Web
         {
             services.AddDbContextPool<AuthenticationDbContext>(
                 options => options.UseSqlServer(Configuration.GetConnectionString("AuthenticationConnection")));
+            
             services.AddControllersWithViews();
         }
 
