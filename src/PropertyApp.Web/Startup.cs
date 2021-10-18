@@ -1,14 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using PropertyApp.Data.DatabaseContext.ApplicationDbContext;
 using PropertyApp.Data.DatabaseContext.AuthenticationDbContexts;
 
 namespace PropertyApp.Web
@@ -28,6 +24,14 @@ namespace PropertyApp.Web
         {
             services.AddDbContextPool<AuthenticationDbContext>(
                 options => options.UseSqlServer(Configuration.GetConnectionString("AuthenticationConnection")));
+            
+            services.AddDbContextPool<ApplicationDbContext>(
+                options => options.UseSqlServer(Configuration.GetConnectionString("ApplicationConnection"),
+                
+                sqlServerOptions => {sqlServerOptions.MigrationsAssembly("PropertyApp.Data");
+                }
+                ));
+                
             
             services.AddControllersWithViews();
         }
